@@ -1,3 +1,9 @@
-*.rel
 *.bin
-*.bat
+*.ihx
+*.lk
+*.lst
+*.map
+*.noi
+*.npp
+*.rel
+*.sym
