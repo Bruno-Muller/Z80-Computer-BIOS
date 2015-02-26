@@ -13,6 +13,6 @@
 #define BIOS_SIZE			0x1000
 
 void flash_tool_rescue_mode();
-void flash_tool_fat16();
+//void flash_tool_fat16();
 
 #endif /* FLASH_TOOL_H */

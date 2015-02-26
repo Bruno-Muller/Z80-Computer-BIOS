@@ -16,8 +16,22 @@ void isr_keyboard() __critical __interrupt(1) {
 
 // Clock interrupt handler
 void isr_clock() __critical __interrupt(2) {
-	//print("\r\nCLK");
+	print("\r\nCLK");
 }
+
+void isr_timer() __critical __interrupt(3) {
+	print("\r\nTMR");
+}
+
+void bios_get_datetime() {
+	chipset_get_datetime();
+}
+
+void bios_set_datetime() {
+	chipset_set_datetime();
+}
+
+
 
 unsigned char bios_seldsk() {
 	return chipset_init_sdcard();

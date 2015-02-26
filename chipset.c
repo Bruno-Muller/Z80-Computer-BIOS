@@ -19,3 +19,11 @@ unsigned char chipset_init_sdcard() {
 	SDCARD_PORT = SDCARD_INIT;
 	return IO_RET;
 }
+
+void chipset_get_datetime() {
+	CLOCK_PORT = CLOCK_GET_DATETIME;
+}
+
+void chipset_set_datetime() {
+	CLOCK_PORT = CLOCK_SET_DATETIME;
+}

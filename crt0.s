@@ -34,8 +34,12 @@
 	.globl s__INITIALIZED
 	
 	.globl	_isr_keyboard
+	.globl	_isr_timer
 	.globl	_isr_clock
 	.globl	_isr_nmi
+	
+	.globl  _bios_get_datetime
+	.globl  _bios_set_datetime
 	
 	;.globl _BOOT    ; COLD START
 	.globl _bios_wboot   ; WARM START
@@ -65,8 +69,11 @@
 	LD HL, #_isr_keyboard
 	LD (#0x1000), HL
 	
-	LD HL, #_isr_clock
+	LD HL, #_isr_timer
 	LD (#0x1002), HL
+	
+	LD HL, #_isr_clock
+	LD (#0x1004), HL
 	
 	;; Set interrupt vector address
 	LD 	A, 	#0x10
@@ -80,6 +87,13 @@
 	CALL	_main
 	
 	JP 0x1100
+	
+	;; ============================
+	;; * Extended Bios Jump Table *
+	;; ============================
+	.org 0xFC7
+	JP _bios_get_datetime
+	JP _bios_set_datetime
 	
 	;; ===================
 	;; * BIOS Jump Table *
@@ -102,11 +116,6 @@
 	JP 0x0000			; #14 WRITE
 	JP 0x0000			; #15 LISTST
 	JP 0x0000			; #16 SECTRAN
-	
-	; Interrupt Vector
-	;.org	0x100
-	;.dw	_isr_keyboard
-	;.dw	_isr_clock
 	
 	;; Ordering of segments for the linker.
 	.area	_HOME

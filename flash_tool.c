@@ -14,7 +14,7 @@ void flash_tool_rescue_mode() {
 			
 	chipset_flash_bios((void *) 0x1100);
 }
-
+/*
 void flash_tool_fat16() {
 	// MBR
 	MasterBootRecord* const mbr = malloc(MBR_SIZE);
@@ -171,4 +171,4 @@ void flash_tool_fat16() {
 
 	print("\r\nWRITE EEPROM");
 	chipset_flash_bios(bios_file);
-}
+}*/

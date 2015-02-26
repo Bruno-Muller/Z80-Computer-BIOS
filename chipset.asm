@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.4.0 #8981 (Apr  5 2014) (MINGW64)
-; This file was generated Sun Jan 25 23:44:54 2015
+; This file was generated Mon Feb 23 21:52:08 2015
 ;--------------------------------------------------------
 	.module chipset
 	.optsdcc -mz80
@@ -9,6 +9,7 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _CLOCK
 	.globl _IO_RET
 	.globl _IO_PARAM2
 	.globl _IO_PARAM1
@@ -16,6 +17,8 @@
 	.globl _chipset_restart
 	.globl _chipset_load_sector_into_memory
 	.globl _chipset_init_sdcard
+	.globl _chipset_get_datetime
+	.globl _chipset_set_datetime
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -24,6 +27,9 @@ _TIMER_PORT	=	0x0001
 _SDCARD_PORT	=	0x0002
 _EEPROM_PORT	=	0x0003
 _RESTART_PORT	=	0x0004
+_KEYBOARD_PORT	=	0x0005
+_VGA_PORT	=	0x0006
+_CLOCK_PORT	=	0x0007
 ;--------------------------------------------------------
 ; ram data
 ;--------------------------------------------------------
@@ -31,6 +37,7 @@ _RESTART_PORT	=	0x0004
 _IO_PARAM1	=	0x0050
 _IO_PARAM2	=	0x0052
 _IO_RET	=	0x0056
+_CLOCK	=	0x0057
 ;--------------------------------------------------------
 ; ram data
 ;--------------------------------------------------------
@@ -126,6 +133,28 @@ _chipset_init_sdcard:
 	ld	l,0 (iy)
 	ret
 _chipset_init_sdcard_end::
+;chipset.c:23: void chipset_get_datetime() {
+;	---------------------------------
+; Function chipset_get_datetime
+; ---------------------------------
+_chipset_get_datetime_start::
+_chipset_get_datetime:
+;chipset.c:24: CLOCK_PORT = CLOCK_GET_DATETIME;
+	ld	a,#0x00
+	out	(_CLOCK_PORT),a
+	ret
+_chipset_get_datetime_end::
+;chipset.c:27: void chipset_set_datetime() {
+;	---------------------------------
+; Function chipset_set_datetime
+; ---------------------------------
+_chipset_set_datetime_start::
+_chipset_set_datetime:
+;chipset.c:28: CLOCK_PORT = CLOCK_SET_DATETIME;
+	ld	a,#0x01
+	out	(_CLOCK_PORT),a
+	ret
+_chipset_set_datetime_end::
 	.area _CODE
 	.area _INITIALIZER
 	.area _CABS (ABS)

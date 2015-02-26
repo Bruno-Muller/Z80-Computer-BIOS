@@ -6,6 +6,9 @@
 #define CONST_READY		0xFF
 #define CONST_NOT_READY 0x00
 
+void bios_get_datetime();
+void bios_set_datetime();
+
 // #0 BOOT
 void bios_wboot(); // #1 WBOOT
 char bios_const(); // #2 CONST

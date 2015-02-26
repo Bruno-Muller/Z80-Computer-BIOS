@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.4.0 #8981 (Apr  5 2014) (MINGW64)
-; This file was generated Sun Jan 25 23:44:54 2015
+; This file was generated Mon Feb 23 21:52:08 2015
 ;--------------------------------------------------------
 	.module io
 	.optsdcc -mz80
@@ -11,6 +11,7 @@
 ;--------------------------------------------------------
 	.globl _bios_conout
 	.globl _bios_conin
+	.globl _CLOCK
 	.globl _IO_RET
 	.globl _IO_PARAM2
 	.globl _IO_PARAM1
@@ -29,6 +30,9 @@ _TIMER_PORT	=	0x0001
 _SDCARD_PORT	=	0x0002
 _EEPROM_PORT	=	0x0003
 _RESTART_PORT	=	0x0004
+_KEYBOARD_PORT	=	0x0005
+_VGA_PORT	=	0x0006
+_CLOCK_PORT	=	0x0007
 ;--------------------------------------------------------
 ; ram data
 ;--------------------------------------------------------
@@ -36,6 +40,7 @@ _RESTART_PORT	=	0x0004
 _IO_PARAM1	=	0x0050
 _IO_PARAM2	=	0x0052
 _IO_RET	=	0x0056
+_CLOCK	=	0x0057
 ;--------------------------------------------------------
 ; ram data
 ;--------------------------------------------------------
