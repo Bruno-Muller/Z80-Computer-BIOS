@@ -2,7 +2,7 @@
 #define	BOOL_H
 
 #define FALSE	0
-#define TRUE 	!FALSE
+#define TRUE 	1
 
 
 #endif /* BOOL_H */

@@ -38,6 +38,7 @@
 	.globl	_isr_clock
 	.globl	_isr_nmi
 	
+	.globl 	_bios_clock_handler
 	.globl  _bios_get_datetime
 	.globl  _bios_set_datetime
 	
@@ -91,7 +92,8 @@
 	;; ============================
 	;; * Extended Bios Jump Table *
 	;; ============================
-	.org 0xFC7
+	.org 0xFC4
+	JP _bios_clock_handler
 	JP _bios_get_datetime
 	JP _bios_set_datetime
 	

@@ -4,6 +4,8 @@ volatile char CONST = CONST_NOT_READY;
 volatile char CHAR_BUFFER;
 unsigned int DMA, SEC;
 
+volatile void (*clock_fct_ptr)() = NULL;
+
 // Non-maskable interrupt handler
 void isr_nmi() __critical __interrupt {
 }
@@ -16,11 +18,15 @@ void isr_keyboard() __critical __interrupt(1) {
 
 // Clock interrupt handler
 void isr_clock() __critical __interrupt(2) {
-	print("\r\nCLK");
+	if (clock_fct_ptr != NULL) (*clock_fct_ptr)();
 }
 
 void isr_timer() __critical __interrupt(3) {
 	print("\r\nTMR");
+}
+
+void bios_clock_handler(void (*fct_ptr)()) {
+	clock_fct_ptr = fct_ptr;
 }
 
 void bios_get_datetime() {

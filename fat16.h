@@ -5,6 +5,7 @@
 #include "chipset.h"
 #include "io.h"
 #include "mbr.h"
+#include "null.h"
 
 #define ATTR_READ_ONLY	0x01
 #define ATTR_HIDDEN		0x02
@@ -13,8 +14,6 @@
 #define ATTR_DIRECTORY	0x10
 #define ATTR_ARCHIVE	0x20
 #define ATTR_LONG_NAME 	ATTR_READ_ONLY | ATTR_HIDDEN | ATTR_SYSTEM | ATTR_VOLUME_ID
-
-#define NULL	(void *) 0x00
 
 typedef struct {
 	unsigned char BS_jmpBoot[3];

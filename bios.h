@@ -2,10 +2,13 @@
 #define	BIOS_H
 
 #include "chipset.h"
+#include "null.h"
 
 #define CONST_READY		0xFF
 #define CONST_NOT_READY 0x00
 
+
+void bios_clock_handler(void (*fct_pt)());
 void bios_get_datetime();
 void bios_set_datetime();
 
