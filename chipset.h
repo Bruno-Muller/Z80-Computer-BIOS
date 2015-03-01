@@ -28,7 +28,7 @@ volatile __at (0x56) unsigned char IO_RET;
 volatile __at (0x57) Clock CLOCK;
 
 #define TIMER_ENABLE	0x00
-#define TIMER_DISABLE 	~TIMER_ENABLE
+#define TIMER_DISABLE 	0x01
 
 #define SDCARD_READ		0x00
 #define SDCARD_INIT		0x01
@@ -40,7 +40,8 @@ volatile __at (0x57) Clock CLOCK;
 
 #define CLOCK_GET_DATETIME	0x00
 #define CLOCK_SET_DATETIME	0x01
-
+#define CLOCK_INT_ENABLE   	0x02
+#define CLOCK_INT_DISABLE  	0x03
 
 void chipset_restart();
 void chipset_load_sector_into_memory(void* memory, unsigned long sector_address);

@@ -27,6 +27,10 @@ void isr_timer() __critical __interrupt(3) {
 
 void bios_clock_handler(void (*fct_ptr)()) {
 	clock_fct_ptr = fct_ptr;
+	if (clock_fct_ptr != NULL)
+		CLOCK_PORT = CLOCK_INT_ENABLE;
+	else
+		CLOCK_PORT = CLOCK_INT_DISABLE;
 }
 
 void bios_get_datetime() {
