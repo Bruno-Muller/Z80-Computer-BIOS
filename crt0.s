@@ -37,6 +37,7 @@
 	.globl	_isr_timer
 	.globl	_isr_clock
 	.globl	_isr_nmi
+	.globl	_isr_trap
 	
 	.globl 	_bios_clock_handler
 	.globl  _bios_get_datetime
@@ -67,17 +68,18 @@
 	LD SP, #0x0000
 	
 	;; Setup interrupt vectors
-	LD HL, #_isr_keyboard
-	LD (#0x1000), HL
+	;LD HL, #_isr_keyboard
+	;LD (#0x1000), HL
 	
-	LD HL, #_isr_timer
-	LD (#0x1002), HL
+	;LD HL, #_isr_timer
+	;LD (#0x1002), HL
 	
-	LD HL, #_isr_clock
-	LD (#0x1004), HL
+	;LD HL, #_isr_clock
+	;LD (#0x1004), HL
 	
 	;; Set interrupt vector address
-	LD 	A, 	#0x10
+	;LD 	A, 	#0x10
+	LD	A, #0x0E
 	LD 	I, 	A
 	IM 2
 
@@ -88,6 +90,140 @@
 	CALL	_main
 	
 	JP 0x1100
+	
+	;; =====================
+	;; * Interrupt vectors *
+	;; =====================
+	.org	0x0E00
+	
+	.dw	_isr_keyboard
+	.dw _isr_timer
+	.dw _isr_clock
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
+	.dw _isr_trap
 	
 	;; ============================
 	;; * Extended Bios Jump Table *

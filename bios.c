@@ -25,6 +25,11 @@ void isr_timer() __critical __interrupt(3) {
 	print("\r\nTMR");
 }
 
+void isr_trap() __critical __interrupt(4) {
+	print("\r\nINTERRUPT TRAP");
+	while(1);
+}
+
 void bios_clock_handler(void (*fct_ptr)()) {
 	clock_fct_ptr = fct_ptr;
 	if (clock_fct_ptr != NULL)

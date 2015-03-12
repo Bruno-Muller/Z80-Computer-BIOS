@@ -13,6 +13,7 @@ void isr_nmi() __critical __interrupt;
 void isr_keyboard() __critical __interrupt(1);
 void isr_clock() __critical __interrupt(2);
 void isr_timer() __critical __interrupt(3);
+void isr_trap() __critical __interrupt(4);
 
 static const char * const SDCARD_FAILED = "\r\nSDCARD MISSING OR FAILED!\r\n";
 MasterBootRecord* const mbr = BOOT_START_ADDRESS;
