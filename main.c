@@ -46,7 +46,7 @@ unsigned char get_unsigned_char() {
 
 void test() {
 	unsigned char temp;
-	print("\r\n20YY-MM-DD hh:mm:nn");
+	print("\r\n20YY-MM-DD hh:mm:ss");
 	print("\r\n20");
 	CLOCK.year = get_unsigned_char();
 	putc('-');
